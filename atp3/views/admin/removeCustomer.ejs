@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>userlist</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1>Employee List</h1>
+
+	<a href="/admin/adminhome">Back</a> |
+	<a href="/logout">logout</a>
+
+<br><br>
+<!-- Search:<input type="text" name="" id = "empsearch" placeholder="empsearch..." >
+<br><br> -->
+	<table border="1">
+		<tr>
+			<td>ID</td>
+			<td>CUSTOMER NAME</td>
+			<td>CUSTOMER EMAIL</td>
+            <td>USERNAME</td>
+            <td>PASSWORD</td>
+            <td>ACTION</td>
+		</tr>
+
+	<% for(var i=0; i< user.length; i++){ %>
+		<tr>
+			<td><%= user[i].id %></td>
+			<td><%= user[i].name %></td>
+            <td><%= user[i].email %></td>
+            <td><%= user[i].username %></td>
+            <td><%= user[i].password %></td>
+			<td>
+				<!-- <a href="/emp/edit/<%= user[i].id %>"> EDIT </a> |  -->
+				<a href="/emp/delete/<%= user[i].id %>"> DELETE </a> | 
+				<!-- <a href="/user/details/<%= user[i].id %>"> Details </a> -->
+			</td>
+		</tr>
+
+	<% } %>
+	</table>
+	<!-- <script type="text/javascript">
+		$("#empsearch").on("keyup",function(){
+	
+			var value = $(this).val();
+			$("table tr").each(function(records)
+			{
+				if(records != 0)
+				{
+					var id = $(this).find("td:eq(1)").text();
+					if(id.indexOf(value)!==0){
+						$(this).hide();
+					}
+					else{
+						$(this).show();
+					}
+				}
+			});
+		});
+	</script> -->
+</body>
+</html>

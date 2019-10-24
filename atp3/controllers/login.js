@@ -17,15 +17,19 @@ router.post('/', function(req, res){
 			if(results[0].type == 'admin'){
 				res.redirect('/admin/adminhome');
 			}
-			else{
-				res.redirect('/customer/customerhome');
-			}
+			// else{
+			// 	res.redirect('/customer/customerhome');
+			// }
 			//req.session.un = req.body.uname;
 			
 			// res.send(results[0].type);
 			// res.redirect('/adminhome');	
 		}else{
-			res.send('invalid username/password');
+			var sql = "select * from customer where username='"+req.body.username+"' and password='"+req.body.password+"'";
+			db.getResults(sql, function(results){
+				if(results.length > 0){
+					res.redirect('/customer/customerhome');
+				} });
 		}
 	});
 
