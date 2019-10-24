@@ -37,5 +37,37 @@ router.get('/removeCustomer',(req, res)=>{
 });
 
 
+router.get('/delete/:id',(req, res)=>{
+
+	var sql = "DELETE FROM customer where id ="+req.params.id;
+	db.execute(sql, function(status){
+
+		if(status){
+			res.redirect('/admin/removeCustomer');
+		}else{
+            // res.redirect('/emp/addemp');
+            res.send('mistake');
+		}
+});});
+
+router.get('/addcomponents',(req, res)=>{
+	res.render("admin/addcomponents");
+});
+
+router.post('/addcomponents',(req, res)=>{
+	var sql = "insert into addcomponents values('','"+ req.body.categories+"', '"+req.body.company+"','"+ req.body.components+"','"+ req.body.description+"')";
+	db.execute(sql, function(status){
+
+		if(status){
+			res.redirect('/admin/addcomponents');
+		}else{
+            // res.redirect('/emp/addemp');
+            res.send('mistake');
+		}
+	});
+});
+
+
+
 module.exports = router;
 

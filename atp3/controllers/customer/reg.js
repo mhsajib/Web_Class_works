@@ -19,7 +19,14 @@ router.post('/customerreg',function(req, res){
 	});
 });
 router.get('/customerhome',function(req, res){
-    res.render('customer/home');
+    var sql = "select * from addcomponents";
+	db.getResults(sql, function(results){
+		if(req.cookies['username'] != null){
+			res.render('customer/home', {user: results});
+		}else{
+			res.redirect('admin/home');
+		}
+	});
 });
 
 module.exports = router;

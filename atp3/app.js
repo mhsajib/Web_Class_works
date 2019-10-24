@@ -2,7 +2,7 @@
 var express  	= require('express');
 
 
-// var $ = require("jquery"
+var $ = require("jquery");
 var ejs  		= require('ejs');
 var bodyParse  	= require('body-parser');
 var exSession  	= require('express-session');
