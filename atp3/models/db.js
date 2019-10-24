@@ -6,7 +6,7 @@ var getConnection = function(){
 		host:'localhost',
 		user: 'root',
 		password: '',
-		database: 'atp3lab'
+		database: 'atp3'
 	});
 	 
 	connection.connect(function(err) {

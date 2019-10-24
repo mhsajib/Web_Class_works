@@ -9,13 +9,21 @@ router.get('/', function(req, res){
 
 router.post('/', function(req, res){
 	
-	var sql = "select * from adminlog where username='"+req.body.username+"' and password='"+req.body.password+"'";
+	var sql = "select * from admin where username='"+req.body.username+"' and password='"+req.body.password+"'";
 	
 	db.getResults(sql, function(results){
 		if(results.length > 0){
-			//req.session.un = req.body.uname;
 			res.cookie('username', req.body.username);
-			res.redirect('/adminhome');	
+			if(results[0].type == 'admin'){
+				res.redirect('/admin/adminhome');
+			}
+			else{
+				res.redirect('/customer/customerhome');
+			}
+			//req.session.un = req.body.uname;
+			
+			// res.send(results[0].type);
+			// res.redirect('/adminhome');	
 		}else{
 			res.send('invalid username/password');
 		}
